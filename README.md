@@ -4,7 +4,7 @@ How to use this
 2. Upload in your project
 3. Create .hex file
 4. Write the code
-Run
+# Run
 1. Go to cmd in your project
 2. type "python shell.py"
 3. type "hex (filename).hex"
