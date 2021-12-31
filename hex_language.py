@@ -47,3 +47,11 @@ class command:
 def forever(code):
     while True:
         exec(code)
+
+def run_another_error_code(code_that_have_error, error, recode_in_error):
+    exec("""try:(
+{}
+    )
+    execpt {}:(
+{}
+    )""".format(code_that_have_error, error, recode_in_error))
