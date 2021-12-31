@@ -16,3 +16,5 @@ How to use this
 1. hex command
 2. clear command
 3. all files command
+4. exit command
+5. help command
