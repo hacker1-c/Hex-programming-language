@@ -1,10 +1,15 @@
 import os
 import socket
+try:
+    st_file = open('setting-clear first screen.txt')
+    if st_file.read() == 'True':
+        os.system('clear')
+    st_file.close()
+except FileNotFoundError:
+    ask = input('Do you want to clear the screen? (y/n): ')
+    if ask == 'y':
+        os.system('clear')
 
-st_file = open('setting-clear first screen.txt')
-if st_file.read() == 'True':
-    os.system('clear')
-st_file.close()
 while True:
     command = input('>>> ')
     if command[0:4] == 'hex ':
@@ -12,10 +17,17 @@ while True:
         files = command[4:last_let]
         exec(open(f'{files}').read())
     elif command == 'exit':
-        file = open('setting-clear last screen.txt')
-        if file.read() == 'True':
-            os.system('clear')
-        exit()
+        try:
+            file = open('setting-clear last screen.txt')
+            if file.read() == 'True':
+                os.system('clear')
+            exit()
+        except FileNotFoundError:
+            ask1 = input('Do you want to clear screen before exit? (y/n): ')
+            if ask1 == 'y':
+                os.system('clear')
+            exit()
+
     elif command[0:10] == 'newFolder ':
         last_let = len(command)
         files = command[10:last_let]
@@ -37,27 +49,38 @@ while True:
         os.rename(filename, rename)
         print('Remane sucessful\n')
     elif command == 'all files':
+        print()
         files = os.listdir()
         for file in files:
             print(file)
         print()
     elif command[0:8] == 'setting ':
-        if command[8:10] == 'y ':
+        last_let1 = len(command)
+        num = 0
+        if command[11:last_let1] == '' and command[8:10] == 'y ':
             st_file = open('setting-clear first screen.txt', 'w')
             st_file.write('True')
             st_file.close()
-        else:
+        elif command[11:last_let1] == '' and command[8:10] == 'n ':
             st_file = open('setting-clear first screen.txt', 'w')
             st_file.write('False')
             st_file.close()
-        if command[10:11] == 'y':
+        else:
+            num += 1
+        if command[11:last_let1] == '' and command[10:11] == 'y':
             nd_file = open('setting-clear last screen.txt', 'w')
             nd_file.write('True')
             nd_file.close()
-        else:
+        elif command[11:last_let1] == '' and command[10:11] == 'n':
             nd_file = open('setting-clear last screen.txt', 'w')
             nd_file.write('False')
             nd_file.close()
+        else:
+            num += 1
+        if num > 0:
+            print('Error')
+        else:
+            print('Setting sucessful')
 
     elif command == 'ip':
         hn = socket.gethostname()
