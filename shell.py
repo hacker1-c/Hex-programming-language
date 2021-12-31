@@ -1,9 +1,10 @@
 import os
 import socket
 
-ask = input('Do you want to clear the screen? (y/n): ')
-if ask == 'y':
+st_file = open('setting-clear first screen.txt')
+if st_file.read() == 'True':
     os.system('clear')
+st_file.close()
 while True:
     command = input('>>> ')
     if command[0:4] == 'hex ':
@@ -11,7 +12,9 @@ while True:
         files = command[4:last_let]
         exec(open(f'{files}').read())
     elif command == 'exit':
-        os.system('clear')
+        file = open('setting-clear last screen.txt')
+        if file.read() == 'True':
+            os.system('clear')
         exit()
     elif command[0:10] == 'newFolder ':
         last_let = len(command)
@@ -30,7 +33,7 @@ while True:
         print('Delete sucessful\n')
     elif command == 'rename':
         filename = input('File or Folder name: ')
-        rename = input('Rename: ') 
+        rename = input('Rename: ')
         os.rename(filename, rename)
         print('Remane sucessful\n')
     elif command == 'all files':
@@ -38,6 +41,24 @@ while True:
         for file in files:
             print(file)
         print()
+    elif command[0:8] == 'setting ':
+        if command[8:10] == 'y ':
+            st_file = open('setting-clear first screen.txt', 'w')
+            st_file.write('True')
+            st_file.close()
+        else:
+            st_file = open('setting-clear first screen.txt', 'w')
+            st_file.write('False')
+            st_file.close()
+        if command[10:11] == 'y':
+            nd_file = open('setting-clear last screen.txt', 'w')
+            nd_file.write('True')
+            nd_file.close()
+        else:
+            nd_file = open('setting-clear last screen.txt', 'w')
+            nd_file.write('False')
+            nd_file.close()
+
     elif command == 'ip':
         hn = socket.gethostname()
         ip = socket.gethostbyname(hn)
@@ -56,6 +77,8 @@ rename: Rename file or folder
 hostname: Tell the hostname
 ip: Tell the IP address
 clear: Clear the screen
+setting: Setting the shell
+all files: Show all files in this project
 help: Help for shell
 exit: Exit the shell
 """)
