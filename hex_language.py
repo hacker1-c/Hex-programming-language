@@ -25,9 +25,11 @@ class user:
     ip = socket.gethostbyname(hostname)
 
 
-def IFc(condition, code):
+def IFc(condition, code, else_code):
     exec("""if {}:(
-      {})""".format(condition, code))
+      {})
+      else:(
+      )""".format(condition, code, else_code))
 
 
 class command:
