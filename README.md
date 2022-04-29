@@ -21,7 +21,8 @@ How to use this
 # How to install hex programming language
 1. Select folder do you want
 2. Check if install git
-3. Go in path input and type git clone https://github.com/hacker1-c/Hex-programming-language/
-4. Go in "Hex-programming-language" folder
-5. Rename "Hex-programming-language" folder
-6. Create main.hex file
+3. Go in path input and type git clone "cmd"
+4. Type "git clone https://github.com/hacker1-c/Hex-programming-language/" in cmd
+5. Go in "Hex-programming-language" folder
+6. Rename "Hex-programming-language" folder
+7. Create main.hex file
