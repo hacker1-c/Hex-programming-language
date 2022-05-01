@@ -17,7 +17,7 @@ class console:
         print(text)
 
     def clear():
-        os.system('clear')
+        os.system('cls')
 
 
 class user:
