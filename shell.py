@@ -3,12 +3,12 @@ import socket
 try:
     st_file = open('setting-clear first screen.txt')
     if st_file.read() == 'True':
-        os.system('clear')
+        os.system('cls')
     st_file.close()
 except FileNotFoundError:
     ask = input('Do you want to clear the screen? (y/n): ')
     if ask == 'y':
-        os.system('clear')
+        os.system('cls')
 
 while True:
     command = input('>>> ')
@@ -20,12 +20,12 @@ while True:
         try:
             file = open('setting-clear last screen.txt')
             if file.read() == 'True':
-                os.system('clear')
+                os.system('cls')
             exit()
         except FileNotFoundError:
             ask1 = input('Do you want to clear screen before exit? (y/n): ')
             if ask1 == 'y':
-                os.system('clear')
+                os.system('cls')
             exit()
 
     elif command[0:10] == 'newFolder ':
@@ -90,7 +90,7 @@ while True:
         hn = socket.gethostname()
         print(hn)
     elif command == 'clear':
-        os.system('clear')
+        os.system('cls')
     elif command == 'help':
         print("""hex: Run hex file
 newFolder: Create new folder
