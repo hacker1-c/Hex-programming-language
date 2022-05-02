@@ -15,7 +15,7 @@ while True:
     if command[0:4] == 'hex ':
         last_let = len(command)
         files = command[4:last_let]
-        exec(open(f'{files}').read())
+        exec(open("hex_language.py").read() + open(files).read())
     elif command == 'exit':
         try:
             file = open('setting-clear last screen.txt')
